@@ -20,7 +20,7 @@ class Student
         $query = "INSERT INTO ". $this->table_name . " SET name = ?, email = ?, mobile = ?";
 
         //prepare query
-        $obj = $this->conn->prepare($query);
+        $prepare = $this->conn->prepare($query);
 
         //sanitize input 
         $this->name = htmlspecialchars(strip_tags($this->name));
@@ -28,9 +28,9 @@ class Student
         $this->mobile = htmlspecialchars(strip_tags($this->mobile));
 
         //binding parameter
-        $obj->bind_param("ssi", $this->name, $this->email, $this->mobile);
+        $prepare->bind_param("ssi", $this->name, $this->email, $this->mobile);
 
-        if ($obj->execute()) {
+        if ($prepare->execute()) {
            return true;
         }else {
             return false;
@@ -42,21 +42,11 @@ class Student
         $query = "SELECT * FROM ". $this->table_name ." ";
 
         //prepare query
-        $obj = $this->conn->prepare($query);
+        $prepare = $this->conn->prepare($query);
 
-        //sanitize input 
-        $this->name = htmlspecialchars(strip_tags($this->name));
-        $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->mobile = htmlspecialchars(strip_tags($this->mobile));
+        $prepare->execute();
 
-        //binding parameter
-        $obj->bind_param("ssi", $this->name, $this->email, $this->mobile);
-
-        if ($obj->execute()) {
-           return true;
-        }else {
-            return false;
-        }
+        return $prepare->get_result();   
     }
 
 }

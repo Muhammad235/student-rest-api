@@ -8,12 +8,10 @@ header("Access-Control-Allow-Methods: POST");
 include_once "../config/Database.php";
 include_once "../classes/Student.php";
 
-
 //database object
 $db = new Database();
 
 $connection = $db->connect();
-
 
 //student obj
 $student = new Student($connection);
@@ -60,6 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     echo json_encode(array(
         "status" => 0,
-        "message" => "Acess denied, only POST methd is allowed"
+        "message" => "Access denied, only POST methd is allowed"
     ));
 }
