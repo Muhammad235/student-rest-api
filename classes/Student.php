@@ -49,4 +49,19 @@ class Student
         return $prepare->get_result();   
     }
 
+    public function get_single_data(){
+        //ge6 data
+        $query = "SELECT * FROM ". $this->table_name ." WHERE id = ?";
+
+        //prepare query
+        $prepare = $this->conn->prepare($query);
+
+        $prepare->bind_param("i", $this->id);
+        $prepare->execute();
+
+        $result = $prepare->get_result();
+
+        return $result->fetch_assoc();   
+    }
+
 }

@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             http_response_code(500); //internal server error
 
             echo json_encode(array(
-                "status" => 0,
+                "status" => 500,
                 "message" => "Failed to create student"
             ));
             
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         http_response_code(400); //bad request
 
         echo json_encode(array(
-            "status" => 0,
+            "status" => 400,
             "message" => "Provide all parameters"
         ));
     }
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     http_response_code(405); // method not allowed
 
     echo json_encode(array(
-        "status" => 0,
+        "status" => 405,
         "message" => "Access denied, only POST methd is allowed"
     ));
 }
