@@ -2,6 +2,7 @@
 
 class Student
 {
+    public $id;
     public $name;
     public $email;
     public $mobile;
@@ -62,6 +63,46 @@ class Student
         $result = $prepare->get_result();
 
         return $result->fetch_assoc();   
+    }
+
+    public function update_student(){
+
+        $query = "UPDATE " . $this->table_name . " SET name = ?, email = ?, mobile = ?  WHERE id = ?";
+
+        $prepare = $this->conn->prepare($query);
+
+         //sanitize input 
+         $this->id = htmlspecialchars(strip_tags($this->id));
+         $this->name = htmlspecialchars(strip_tags($this->name));
+         $this->email = htmlspecialchars(strip_tags($this->email));
+         $this->mobile = htmlspecialchars(strip_tags($this->mobile));
+
+         //binding parameters
+         $prepare->bind_param("sssi", $this->name, $this->email, $this->mobile, $this->id);
+
+         if ($prepare->execute()) {
+            return true;
+         }
+
+         return false;       
+    }
+
+    public function delete_student(){
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+        
+        $prepare = $this->conn->prepare($query);
+         //sanitize input 
+         $this->id = htmlspecialchars(strip_tags($this->id));
+
+        //binding parameters
+        $prepare->bind_param("i", $this->id);
+
+        if ($prepare->execute()) {
+                return true;
+        }
+         
+        return false;
+
     }
 
 }

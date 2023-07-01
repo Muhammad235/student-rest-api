@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             http_response_code(201); //OK
 
             echo json_encode(array(
-                "status" => 1,
+                "status" => 201,
                 "message" => "Student created successfully"
             ));
 

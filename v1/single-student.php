@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD']  === "GET") {
                 "status" => 404,
                 "message" => "Student not found"
             ));
-            
+
         }
         
     }else{
@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD']  === "GET") {
             "status" => 400,
             "message" => "Provide all parameters"
         ));
-
 
     }
 
