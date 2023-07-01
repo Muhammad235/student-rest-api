@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $student->email = $data->email;
         $student->mobile =  $data->mobile;
 
-        if ($student->create_data()) {
+        if ($student->create_user()) {
 
             http_response_code(201); //OK
 

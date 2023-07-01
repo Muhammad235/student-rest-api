@@ -16,7 +16,7 @@ class Student
         $this->table_name = "student";
     }
 
-    public function create_data(){
+    public function create_user(){
         //insert data
         $query = "INSERT INTO ". $this->table_name . " SET name = ?, email = ?, mobile = ?";
 
